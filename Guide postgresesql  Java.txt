@@ -1,0 +1,49 @@
+1) качаем постгрис, жаву.
+
+2) запускаем постгрис создаем нового юзера 
+	"CRETE USER app PASSWORD 0000"
+
+3) создаем базу для юзера
+	"CREATE DATABASE adddb OWNER app"
+
+4) зазодим в базу как юзер
+	"\c appdb app localhost 5432"
+
+5) создаем таблицу времени записи
+	"CREATE TABLE timetable(
+		name text,
+		contact text,   
+		time timestamp,
+		service int);"
+
+5.1) как пользоваться - список таблиц: \dt
+				 добавить :
+	"INSERT INTO timetable(contact, time )
+		VALUES('+7(999)11-22-3333', '2014-04-04 20:32:59'),
+			('+7(222)88-77-4444', '2014-04-04 20:32:59');"
+				удалить: думай дважды перед тем как добавить("DROP TABLE timetable").
+				вытащить из таблицы: "SELECT * FROM timetable"
+
+6) качаем драйвер для джавы - postgresql-42.5.0.jar,
+	в инлджей добавляем его Progect structure> Moduls> '+'> путь до скаченого jar файла.
+
+Пример рабочего кода: 
+import java.sql.* ;
+
+public  class tst{
+    public static void main(String[] args) throws SQLException{
+        Connection conn = DriverManager.getConnection(
+                "jdbc:postgresql://localhost:5432/appdb",
+                "app", "0000");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(
+                "SELECT contact, time FROM timetable"
+        );
+        while (rs.next()){
+            System.out.println(rs.getString(1));
+            System.out.println(rs.getString(2));
+        }
+        rs.close();
+        st.close();
+    }
+}
