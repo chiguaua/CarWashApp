@@ -5,7 +5,17 @@
     tools:context=".MainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screenBackground">
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/box"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/banner"
@@ -13,7 +23,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="@string/RegistrationPage"
-        android:textColor="@android:color/white"
+        android:textColor="#341400"
         android:textSize="60sp"
         android:layout_marginTop="50dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -24,9 +34,10 @@
         android:id="@+id/bannerDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
         android:text="@string/NameOfApp"
         android:textStyle="italic"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -37,14 +48,16 @@
         android:id="@+id/email"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="130dp"
         android:ems="10"
+        android:textColor="#282828"
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bannerDescription"
+        android:gravity="center_horizontal"
         android:autofillHints="Email Address" />
 
     <EditText
@@ -56,6 +69,7 @@
         android:hint="@string/Password"
         android:inputType="textPassword"
         android:textSize="24sp"
+        android:textColor="#282828"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
@@ -67,7 +81,7 @@
     android:layout_width="380dp"
     android:layout_height="70dp"
     android:layout_marginTop="24dp"
-    android:backgroundTint="@color/purple_200"
+    android:backgroundTint="#0ED689"
     android:text="@string/login"
     android:textColor="#ffffff"
     android:textSize="26sp"
