@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">NewActivity</string>
+    <string name="icon">Icon</string>
+    <string name="contact">Контакты</string>
+    <string name="main">Главная</string>
+    <string name="aboutUs">О нас</string>
+    <string name="FirstOfferImage">FirstOfferImage</string>
+    <string name="Time_needed">Длительность:</string>
+    <string name="Price">Цена:</string>
+    <string name="Unknown">***</string>
+    <string name="Description">Детальное описание услуги</string>
+    <string name="OfferDescriptionPicture">Фотография услуги</string>
+    <string name="MainName">Топаз</string>
+    <string name="ChooseOffer">Выбрать услугу</string>
+</resources>
