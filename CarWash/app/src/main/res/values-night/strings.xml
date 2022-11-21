@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="button_central">Button Central</string>
-    <string name="button_left">Button Left</string>
-    <string name="button_right">Button Right</string>
-    <string name="button_one">Button One</string>
-    <string name="button_two">Button Two</string>
-    <string name="button_three">Button Three</string>
-    <string name="toast">Toast</string>
     <string name="email_address">Email Address</string>
     <string name="Password">password</string>
     <string name="login">Login</string>
@@ -15,4 +8,6 @@
     <string name="full_name">Full Name</string>
     <string name="age">Age</string>
     <string name="email">Email</string>
+    <string name="Reset_Password">Введите свою почту</string>
+    <string name="reset_password_button">Восстановить пароль</string>
 </resources>

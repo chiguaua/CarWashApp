@@ -12,4 +12,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="screenBackground">#2196F3</color>
     <color name="buttonBackground">#BBDEFB</color>
+    <color name="orange">#FF9800</color>
+    <color name="light_orange">#FFB700</color>
+    <color name="orange_1">#DF8500</color>
+    <color name="while_2">#DDDDDD</color>
 </resources>

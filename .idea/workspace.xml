@@ -4,13 +4,34 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7f122bc-caee-4ae1-a8b2-36cd20ee00fd" name="Changes" comment="not .idea files!!!" />
+    <list default="true" id="c7f122bc-caee-4ae1-a8b2-36cd20ee00fd" name="Changes" comment="not .idea files!!!">
+      <change afterPath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/ForgotPasswordActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/LogInPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/ProfileActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/layout-v28/activity_forgot_password.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/layout-v28/activity_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/RegisterUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/java/ru/nsu/carwashapplication/RegisterUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/res/layout-v21/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/layout-v28/activity_log_in.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/res/values-night/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/values-night/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/app/src/test/java/ru/nsu/carwashapplication/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/app/src/test/java/ru/nsu/carwashapplication/ExampleUnitTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CarWash/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CarWash/build.gradle" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ApplicationLayoutFuture" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">

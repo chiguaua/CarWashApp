@@ -1,5 +1,6 @@
 package ru.nsu.carwashapplication;
 
+import java.sql.* ;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -17,20 +18,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
     FirebaseAuth mAuth;
 
     private TextView banner, registerUser;
-    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
+    private EditText editTextfullName, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
+
+
 
         mAuth =FirebaseAuth.getInstance();
 
@@ -40,7 +44,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(this);
 
-        editTextFullName = (EditText) findViewById(R.id.fullName);
+        editTextfullName = (EditText) findViewById(R.id.fullName);
         editTextAge = (EditText) findViewById(R.id.age);
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
@@ -52,7 +56,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.banner:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LogInPage.class));
                 break;
             case R.id.registerUser:
                 registerUser();
@@ -63,12 +67,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private void registerUser() {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-        String fullname = editTextFullName.getText().toString().trim();
+        String fullName = editTextfullName.getText().toString().trim();
         String age = editTextAge.getText().toString().trim();
 
-        if(fullname.isEmpty()) {
-            editTextFullName.setError("No full name");
-            editTextFullName.requestFocus();
+        if(fullName.isEmpty()) {
+            editTextfullName.setError("No full name");
+            editTextfullName.requestFocus();
             return;
         }
 
@@ -100,35 +104,30 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                .addOnCompleteListener(task -> {
 
-                        if (task.isSuccessful()){
-                            User user = new User(fullname, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        User user = new User(fullName, age, email);
+                        FirebaseDatabase.getInstance().getReference("Users")
+                                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                                .setValue(user).addOnCompleteListener(task1 -> {
 
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(RegisterUser.this, "Зарегистрировался юзер",Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.VISIBLE);
+                                    if(task1.isSuccessful()){
+                                        Toast.makeText(RegisterUser.this, "Зарегистрировался юзер",Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.VISIBLE);
+                                        startActivity(new Intent(this, LogInPage.class));
 
-                                                //redirect to login layout
-                                            }
-                                            else{
-                                                Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.GONE);
-                                            }
+                                        //redirect to login layout
+                                    }
+                                    else{
+                                        Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
 
-                                        }
-                                    });
-                        }else {
-                            Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
+                                });
+                    }else {
+                        Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }
