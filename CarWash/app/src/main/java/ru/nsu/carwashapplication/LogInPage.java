@@ -15,11 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 
 public class LogInPage extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail, editTextPassword;

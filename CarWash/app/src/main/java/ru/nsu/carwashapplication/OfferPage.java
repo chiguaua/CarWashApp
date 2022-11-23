@@ -27,5 +27,6 @@ public class OfferPage extends AppCompatActivity {
         offerTime.setText(getIntent().getStringExtra("offerTime"));
         offerPrice.setText(getIntent().getStringExtra("offerPrice"));
         offerText.setText(getIntent().getStringExtra("offerText"));
+
     }
 }

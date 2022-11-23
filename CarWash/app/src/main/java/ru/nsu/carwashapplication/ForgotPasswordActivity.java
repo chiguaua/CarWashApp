@@ -1,25 +1,19 @@
 package ru.nsu.carwashapplication;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText emailEditText;
     private Button resetPasswordButton;
-    private ProgressBar progressBar;
 
     FirebaseAuth auth;
 
@@ -30,8 +24,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         emailEditText = (EditText) findViewById(R.id.email);
         resetPasswordButton = (Button) findViewById(R.id.resetPassword);
-        progressBar = (ProgressBar) findViewById(R.id.progressbar);
-        
+
         auth = FirebaseAuth.getInstance();
         
         resetPasswordButton.setOnClickListener(v -> resetPassword());
@@ -51,14 +44,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
         auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(ForgotPasswordActivity.this, "Проверьте свою почту, сообщение может быть в спаме", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ForgotPasswordActivity.this, LogInPage.class));
 
             }else {
-                Toast.makeText(ForgotPasswordActivity.this, "Попробуйте еще раз", Toast.LENGTH_LONG).show();
+                Toast.makeText(ForgotPasswordActivity.this, "Такой почты не существует", Toast.LENGTH_LONG).show();
+                emailEditText.requestFocus();
             }
         });
     }
