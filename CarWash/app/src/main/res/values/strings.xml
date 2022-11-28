@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Не получается убрать эту штуку</string>
+    <string name="app_name">Топаз Автомойка</string>
     <string name="RegistrationPage">Топаз</string>
     <string name="NameOfApp">Работает для вас с 2099</string>
     <string name="email_address">Почта</string>
@@ -11,4 +11,20 @@
     <string name="age">Возраст</string>
     <string name="email">Почта</string>
     <string name="register_user">Register User</string>
+    <string name="profilePage">Тут должен быть профиль или то что идёт после регистрации</string>
+    <string name="Reset_Password">Введите свою почту</string>
+    <string name="reset_password_button">Восстановить пароль</string>
+    <string name="logOut">Выйти</string>
+    <string name="icon">Icon</string>
+    <string name="contact">Контакты</string>
+    <string name="mainPageName">Главная</string>
+    <string name="aboutUs">О нас</string>
+    <string name="FirstOfferImage">FirstOfferImage</string>
+    <string name="Time_needed">Длительность:</string>
+    <string name="Price">Цена:</string>
+    <string name="Unknown">***</string>
+    <string name="Description">Детальное описание услуги</string>
+    <string name="OfferDescriptionPicture">Фотография услуги</string>
+    <string name="MainName">Топаз</string>
+    <string name="ChooseOffer">Выбрать услугу</string>
 </resources>

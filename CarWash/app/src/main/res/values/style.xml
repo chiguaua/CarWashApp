@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimaryDark">?android:attr/colorActivatedHighlight</item>
         <item name="colorAccent">?android:attr/colorActivatedHighlight</item>
         <item name="colorPrimary">?android:attr/colorActivatedHighlight</item>
