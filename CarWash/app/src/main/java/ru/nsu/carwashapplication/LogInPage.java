@@ -13,15 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-
 public class LogInPage extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
     private TextView register, forgotPassword;
 
-    private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
     @Override
@@ -43,7 +39,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
 
-        mAuth = FirebaseAuth.getInstance();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -91,13 +86,13 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         }
         progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+        /*mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 startActivity(new Intent(LogInPage.this,CentralPage.class));
             } else {
                 Toast.makeText(LogInPage.this, "Ошибки регистрации, перепроверьте введенные данные", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
     }
 }
