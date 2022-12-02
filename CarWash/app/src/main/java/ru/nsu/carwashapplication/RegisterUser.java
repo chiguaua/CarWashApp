@@ -19,6 +19,7 @@ import retrofit2.Response;
 import ru.nsu.carwashapplication.model.Client;
 import ru.nsu.carwashapplication.retrofit.ClientApi;
 import ru.nsu.carwashapplication.retrofit.RetrofitService;
+import ru.nsu.carwashapplication.retrofit.RetrofitServiceJason;
 
 import java.util.Objects;
 import java.util.logging.Level;
@@ -108,7 +109,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         client.setEmail(email);
         client.setPhone(age); //!!!!!!!
 
-        RetrofitService retrofitService = new RetrofitService();
+        RetrofitServiceJason retrofitService = new RetrofitServiceJason();
         ClientApi clientApi = retrofitService.getRetrofit().create(ClientApi.class);
 
         clientApi.save(client)

@@ -15,4 +15,7 @@ public interface ClientApi {
 
     @POST("/client/save")
     Call<Client> save(@Body Client client);
+
+    @POST("/client/login")
+    Call<String> login(@Body Client client);
 }
