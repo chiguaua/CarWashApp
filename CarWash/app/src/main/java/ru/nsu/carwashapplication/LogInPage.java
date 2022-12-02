@@ -56,6 +56,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
 
             case R.id.signIn:
                 userLogin();
+                startActivity(new Intent(this, CentralPage.class));
                 break;
 
             case R.id.forgotPassword:
