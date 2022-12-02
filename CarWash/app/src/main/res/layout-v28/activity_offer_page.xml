@@ -8,64 +8,6 @@
     android:background="@color/orange_1"
     tools:context=".OfferPage">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="95dp"
-        android:layout_height="731dp"
-        android:background="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/contacts"
-            android:layout_width="115dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/archivo_black"
-            android:gravity="center"
-            android:rotation="270"
-            android:text="@string/mainPageName"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/info"
-            android:layout_width="115dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/archivo_black"
-            android:gravity="center"
-            android:rotation="270"
-            android:text="@string/aboutUs"
-            android:textColor="@color/white"
-            android:textSize="27sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/support" />
-
-        <TextView
-            android:id="@+id/support"
-            android:layout_width="115dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="35dp"
-            android:fontFamily="@font/archivo_black"
-            android:gravity="center"
-            android:rotation="270"
-            android:text="@string/contact"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contacts" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ImageView
         android:id="@+id/offerPageImage"
         android:layout_width="315dp"
@@ -74,8 +16,7 @@
         android:scaleType="centerCrop"
         android:transitionName="offerImage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_4x64" />
 
@@ -90,7 +31,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offerPageImage" />
 
     <androidx.cardview.widget.CardView
@@ -101,12 +42,11 @@
         android:layout_marginTop="30dp"
         app:cardBackgroundColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/offerPageTitle">
 
         <LinearLayout
             android:id="@+id/offerBg"
-            android:layout_width="wrap_content"
+            android:layout_width="410dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingBottom="20dp">
@@ -179,8 +119,7 @@
         android:text="@string/Description"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <Button
@@ -192,7 +131,7 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/offerPageText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
