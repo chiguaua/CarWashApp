@@ -35,7 +35,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_register_user);
 
 
-
         mAuth =FirebaseAuth.getInstance();
 
         banner = (TextView) findViewById(R.id.banner);
