@@ -118,7 +118,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
                         Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(RegisterUser.this, CentralPage.class));
+                        startActivity(new Intent(RegisterUser.this, CentralPage.class).putExtra("mail",email));
                     }
                     @Override
                     public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {

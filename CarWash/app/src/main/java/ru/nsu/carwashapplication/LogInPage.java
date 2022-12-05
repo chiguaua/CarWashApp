@@ -114,7 +114,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                            // Toast.makeText(LogInPage.this, response.code(), Toast.LENGTH_LONG*10).show();
                            if (response.code() == 200) {
                                Toast.makeText(LogInPage.this, "Успешно"/*response.body().toString()*/, Toast.LENGTH_LONG).show();
-                               startActivity(new Intent(LogInPage.this, CentralPage.class));
+                               startActivity(new Intent(LogInPage.this, CentralPage.class).putExtra("mail",email));
                            } else if (response.code() == 404) {
                                Toast.makeText(LogInPage.this, "Неверный mail", Toast.LENGTH_LONG).show();
                            }else if (response.code() == 400) {

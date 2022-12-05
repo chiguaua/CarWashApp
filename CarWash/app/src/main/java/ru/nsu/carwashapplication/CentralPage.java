@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +34,15 @@ public class CentralPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_central_page);
+
+        Bundle arguments = getIntent().getExtras();
+        String userMail = arguments.get("mail").toString();    // Hello World
+        //    findViewById(R.id.textView4).setTe;
+        TextView textView = findViewById(R.id.textView4);
+// задаём текст
+        textView.setText(userMail);
+// или с использованием текстовых ресурсов
+
 
         List<Offer> offerList = new ArrayList<>();
         offerList.add(new Offer(1, "4x64", "Услуга 1", "1ч", "1000 руб", "#DF8500", "Test"));
