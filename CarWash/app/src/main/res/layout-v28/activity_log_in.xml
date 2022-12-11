@@ -5,8 +5,7 @@
     tools:context=".LogInPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/photo_5808726363857858365_w">
-    >
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/banner"

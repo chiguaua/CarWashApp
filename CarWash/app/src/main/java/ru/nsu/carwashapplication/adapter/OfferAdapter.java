@@ -10,6 +10,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,25 +54,24 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.OfferViewHol
         holder.offerPrice.setText(offers.get(position).getPrice());
         holder.offerTime.setText(offers.get(position).getTime());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, OfferPage.class);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, OfferPage.class);
 
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                        (Activity) context,
-                        new Pair<View, String>(holder.offerImage, "offerImage")
-                );
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                    (Activity) context,
+                    new Pair<>(holder.offerImage, "offerImage")
+            );
 
-                intent.putExtra("offerBg", Color.parseColor(offers.get(position).getColor()));
-                intent.putExtra("offerImage", imageId);
-                intent.putExtra("offerTitle", offers.get(position).getTitle());
-                intent.putExtra("offerPrice", offers.get(position).getPrice());
-                intent.putExtra("offerTime", offers.get(position).getTime());
-                intent.putExtra("offerText", offers.get(position).getText());
+            intent.putExtra("offerBg", Color.parseColor(offers.get(position).getColor()));
+            intent.putExtra("offerBtnColor", Color.parseColor(offers.get(position).getBtnColor()));
+            intent.putExtra("offerImage", imageId);
+            intent.putExtra("offerTitle", offers.get(position).getTitle());
+            intent.putExtra("offerPrice", offers.get(position).getPrice());
+            intent.putExtra("offerTime", offers.get(position).getTime());
+            intent.putExtra("offerText", offers.get(position).getText());
+            intent.putExtra("offerId", offers.get(position).getId());
 
-                context.startActivity(intent, options.toBundle());
-            }
+            context.startActivity(intent, options.toBundle());
         });
     }
 

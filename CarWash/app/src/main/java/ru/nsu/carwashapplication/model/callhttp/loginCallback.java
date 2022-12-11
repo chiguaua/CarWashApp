@@ -1,4 +1,4 @@
-package ru.nsu.carwashapplication.model;
+package ru.nsu.carwashapplication.model.callhttp;
 
 import java.util.List;
 

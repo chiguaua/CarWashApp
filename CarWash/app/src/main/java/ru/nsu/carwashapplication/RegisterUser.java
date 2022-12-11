@@ -16,7 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.nsu.carwashapplication.model.Client;
-import ru.nsu.carwashapplication.model.globalVar;
+import ru.nsu.carwashapplication.model.callhttp.signupSend;
 import ru.nsu.carwashapplication.retrofit.ClientApi;
 import ru.nsu.carwashapplication.retrofit.RetrofitServiceJson;
 
@@ -65,7 +65,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextfullName.getText().toString().trim();
-        String age = editTextAge.getText().toString().trim();
+        String phone = editTextAge.getText().toString().trim();
 
         if(fullName.isEmpty()) {
             editTextfullName.setError("No full name");
@@ -73,8 +73,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (age.isEmpty()){
-            editTextAge.setError("No age");
+        if (phone.isEmpty()){
+            editTextAge.setError("No phone");
             editTextAge.requestFocus();
             return;
         }
@@ -100,23 +100,23 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
         progressBar.setVisibility(View.VISIBLE);
 
-        Client client = new Client();
-        client.setName(fullName);
-        client.setPassword(password);
-        client.setEmail(email);
-        client.setPhone(age); //!!!!!!!
+        signupSend ss = new signupSend();
+        ss.setUsername(fullName);
+        ss.setPassword(password);
+        ss.setEmail(email);
+        ss.setPhone(phone); //!!!!!!!
+        ss.setRole();
 
         RetrofitServiceJson retrofitService = new RetrofitServiceJson();
         ClientApi clientApi = retrofitService.getRetrofit().create(ClientApi.class);
 
-        clientApi.save(client)
+        clientApi.save(ss)
                 .enqueue(new Callback<Client>() {
                     @Override
                     public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
                         Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
-                        globalVar.setUserMail(email);
-                        startActivity(new Intent(RegisterUser.this, CentralPage.class));
+                        startActivity(new Intent(RegisterUser.this, CentralPage.class).putExtra("mail",email));
                     }
                     @Override
                     public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {

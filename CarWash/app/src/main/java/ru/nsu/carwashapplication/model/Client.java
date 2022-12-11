@@ -1,22 +1,22 @@
 package ru.nsu.carwashapplication.model;
 
-
-
 public class Client {
 
     private int id;
-    private String username;
+    private String name;
     private String email;
     private String phone;
+    private String bonuses;
     private String password;
 
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
-                ", name='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", bonuses='" + bonuses + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
@@ -30,11 +30,11 @@ public class Client {
     }
 
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -51,6 +51,14 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getBonuses() {
+        return bonuses;
+    }
+
+    public void setBonuses(String bonuses) {
+        this.bonuses = bonuses;
     }
 
     public void setPassword(String password) {

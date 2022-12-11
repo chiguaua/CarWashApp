@@ -9,9 +9,5 @@
             android:id="@+id/nav_about_us"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/aboutUs" />
-        <item
-            android:id="@+id/nav_myOrd"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Мои заказы" />
     </group>
 </menu>
