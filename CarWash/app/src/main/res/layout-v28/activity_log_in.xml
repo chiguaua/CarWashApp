@@ -27,7 +27,7 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         android:textColor="#282828"
-        android:hint="@string/email_address"
+        android:hint="@string/nickname"
         android:inputType="textEmailAddress"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"

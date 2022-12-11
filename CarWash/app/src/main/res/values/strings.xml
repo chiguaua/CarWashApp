@@ -3,6 +3,8 @@
     <string name="RegistrationPage">Топаз</string>
     <string name="NameOfApp">Работает для вас с 2099</string>
     <string name="email_address">Почта</string>
+    <string name="nickname">Имя</string>
+    nickname
     <string name="Password">Пароль</string>
     <string name="login">Login</string>
     <string name="register">Регистрация</string>
