@@ -13,15 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.nsu.carwashapplication.model.Client;
+import ru.nsu.carwashapplication.model.callhttp.loginCallback;
+import ru.nsu.carwashapplication.model.callhttp.loginCallsend;
+import ru.nsu.carwashapplication.model.globalVar;
+import ru.nsu.carwashapplication.model.loginCallback;
+import ru.nsu.carwashapplication.model.loginCallsend;
 import ru.nsu.carwashapplication.retrofit.ClientApi;
-import ru.nsu.carwashapplication.retrofit.RetrofitService;
+import ru.nsu.carwashapplication.retrofit.RetrofitServiceJson;
 
 public class LogInPage extends AppCompatActivity implements View.OnClickListener {
     private EditText editTextEmail, editTextPassword;
@@ -34,7 +36,6 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_log_in);
-
 
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(this);
@@ -96,37 +97,45 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
         progressBar.setVisibility(View.VISIBLE);
 
         Client client = new Client();
-        client.setBonuses(null);
-        client.setName(null);
+        client.setName(email);
         client.setPassword(password);
         client.setEmail(email);
         client.setPhone(null); //!!!!!
 
-        RetrofitService retrofitService = new RetrofitService();
+        loginCallsend ls = new loginCallsend();
+        ls.setPassword(password);
+        ls.setUsername(email);
+
+        RetrofitServiceJson retrofitService = new RetrofitServiceJson();
         ClientApi clientApi = retrofitService.getRetrofit().create(ClientApi.class);
 
-        clientApi.login(client)
-                .enqueue(new Callback<String>() {
+        clientApi.login(ls)
+                .enqueue(new Callback<loginCallback>() {
                     @Override
-                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                       if (response != null) {
-                           progressBar.setVisibility(View.INVISIBLE);
-                           // Toast.makeText(LogInPage.this, response.code(), Toast.LENGTH_LONG*10).show();
-                           if (response.code() == 200) {
-                               Toast.makeText(LogInPage.this, "Успешно"/*response.body().toString()*/, Toast.LENGTH_LONG).show();
-                               startActivity(new Intent(LogInPage.this, CentralPage.class).putExtra("mail",email));
+                    public void onResponse(@NonNull Call call, @NonNull Response response) {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        if (response.code() == 200) {
+                                loginCallback ans = (loginCallback) response.body();
+                               Toast.makeText(LogInPage.this, ans.getAccessToken(), Toast.LENGTH_LONG).show();
+                               globalVar.setUserMail(email);
+                               startActivity(new Intent(LogInPage.this, CentralPage.class));
                            } else if (response.code() == 404) {
                                Toast.makeText(LogInPage.this, "Неверный mail", Toast.LENGTH_LONG).show();
                            }else if (response.code() == 400) {
                                Toast.makeText(LogInPage.this, "Неверный пароль", Toast.LENGTH_LONG).show();
+
+                           }else {
+                               Toast.makeText(LogInPage.this, response.toString(), Toast.LENGTH_LONG * 10).show();
                            }
-                       }
                     }
                     @Override
-                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                       // String resp = "Вход не удался: ".concat(t.toString());
+                    public void onFailure(@NonNull Call call, @NonNull Throwable t) {
+                     //   Toast.makeText(LogInPage.this, "trouble", Toast.LENGTH_LONG*10).show();
+                        Toast.makeText(LogInPage.this, t.toString(), Toast.LENGTH_LONG * 10).show();
+
+                        // String resp = "Вход не удался: ".concat(t.toString());
                         //Toast.makeText(LogInPage.this, resp, Toast.LENGTH_LONG).show();
-                        //progressBar.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
                         //Logger.getLogger(LogInPage.class.getName()).log(Level.SEVERE,"Ошибка",t);
 
                     }

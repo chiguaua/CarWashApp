@@ -21,6 +21,7 @@ import java.util.List;
 
 import ru.nsu.carwashapplication.adapter.OfferAdapter;
 import ru.nsu.carwashapplication.model.Offer;
+import ru.nsu.carwashapplication.model.globalVar;
 
 public class CentralPage extends AppCompatActivity {
 
@@ -35,13 +36,9 @@ public class CentralPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_central_page);
 
-        Bundle arguments = getIntent().getExtras();
-        String userMail = arguments.get("mail").toString();    // Hello World
-        //    findViewById(R.id.textView4).setTe;
+        String userMail =  globalVar.getUserMail();;    // Hello World
         TextView textView = findViewById(R.id.textView4);
-// задаём текст
         textView.setText(userMail);
-// или с использованием текстовых ресурсов
 
 
         List<Offer> offerList = new ArrayList<>();
@@ -79,6 +76,10 @@ public class CentralPage extends AppCompatActivity {
             if (id == R.id.nav_main) {
                 Toast.makeText(getApplicationContext(), "Вы выбрали раздел Топаз!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,CentralPage.class));
+            }
+            if (id == R.id.nav_myOrd) {
+                Toast.makeText(getApplicationContext(), "Вы выбрали раздел Топаз!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this,OrdList.class));
             }
             return true;
         });

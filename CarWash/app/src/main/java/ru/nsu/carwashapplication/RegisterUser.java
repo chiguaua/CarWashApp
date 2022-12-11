@@ -2,7 +2,6 @@ package ru.nsu.carwashapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,11 +16,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.nsu.carwashapplication.model.Client;
+import ru.nsu.carwashapplication.model.globalVar;
 import ru.nsu.carwashapplication.retrofit.ClientApi;
-import ru.nsu.carwashapplication.retrofit.RetrofitService;
-import ru.nsu.carwashapplication.retrofit.RetrofitServiceJason;
+import ru.nsu.carwashapplication.retrofit.RetrofitServiceJson;
 
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,13 +101,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         progressBar.setVisibility(View.VISIBLE);
 
         Client client = new Client();
-        client.setBonuses(null);
         client.setName(fullName);
         client.setPassword(password);
         client.setEmail(email);
         client.setPhone(age); //!!!!!!!
 
-        RetrofitServiceJason retrofitService = new RetrofitServiceJason();
+        RetrofitServiceJson retrofitService = new RetrofitServiceJson();
         ClientApi clientApi = retrofitService.getRetrofit().create(ClientApi.class);
 
         clientApi.save(client)
@@ -118,7 +115,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
                         Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(RegisterUser.this, CentralPage.class).putExtra("mail",email));
+                        globalVar.setUserMail(email);
+                        startActivity(new Intent(RegisterUser.this, CentralPage.class));
                     }
                     @Override
                     public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
