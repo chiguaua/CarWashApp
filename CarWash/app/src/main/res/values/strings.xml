@@ -9,6 +9,7 @@
     <string name="forgot_password">Забыли пароль?</string>
     <string name="full_name">ФИО</string>
     <string name="age">Возраст</string>
+    <string name="phone">Телефон</string>
     <string name="email">Почта</string>
     <string name="register_user">Register User</string>
     <string name="profilePage">Тут должен быть профиль или то что идёт после регистрации</string>

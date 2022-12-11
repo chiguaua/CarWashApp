@@ -16,7 +16,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.nsu.carwashapplication.model.Client;
+import ru.nsu.carwashapplication.model.callhttp.loginCallback;
 import ru.nsu.carwashapplication.model.callhttp.signupSend;
+import ru.nsu.carwashapplication.model.globalVar;
 import ru.nsu.carwashapplication.retrofit.ClientApi;
 import ru.nsu.carwashapplication.retrofit.RetrofitServiceJson;
 
@@ -114,9 +116,16 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                 .enqueue(new Callback<Client>() {
                     @Override
                     public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
-                        Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
+
                         progressBar.setVisibility(View.INVISIBLE);
-                        startActivity(new Intent(RegisterUser.this, CentralPage.class).putExtra("mail",email));
+                        if (response.code() == 200) {
+                            Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LogInPage.this, ans.getAccessToken(), Toast.LENGTH_LONG).show();
+                            globalVar.setUserMail(email);
+                            startActivity(new Intent(RegisterUser.this, CentralPage.class));
+                        } else  {
+                            Toast.makeText(RegisterUser.this, "Регистрация не прошла", Toast.LENGTH_LONG * 10).show();
+                        }
                     }
                     @Override
                     public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
