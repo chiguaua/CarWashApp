@@ -2,9 +2,9 @@ package ru.nsu.carwashapplication.model;
 
 public class Offer {
     int id;
-    String img, title, time, price, color, text;
+    String img, title, time, price, color, text, btnColor;
 
-    public Offer(int id, String img, String title, String time, String price, String color, String text) {
+    public Offer(int id, String img, String title, String time, String price, String color, String btnColor, String text) {
         this.id = id;
         this.img = img;
         this.title = title;
@@ -12,6 +12,15 @@ public class Offer {
         this.price = price;
         this.color = color;
         this.text = text;
+        this.btnColor = btnColor;
+    }
+
+    public String getBtnColor() {
+        return btnColor;
+    }
+
+    public void setBtnColor(String btnColor) {
+        this.btnColor = btnColor;
     }
 
     public String getTitle() {

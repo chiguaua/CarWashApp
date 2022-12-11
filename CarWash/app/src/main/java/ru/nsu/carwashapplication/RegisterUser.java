@@ -1,9 +1,7 @@
 package ru.nsu.carwashapplication;
 
-import java.sql.* ;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,16 +12,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import ru.nsu.carwashapplication.model.Client;
+import ru.nsu.carwashapplication.model.callhttp.signupSend;
+import ru.nsu.carwashapplication.retrofit.ClientApi;
+import ru.nsu.carwashapplication.retrofit.RetrofitServiceJson;
 
-import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener {
-    FirebaseAuth mAuth;
+
 
     private TextView banner, registerUser;
     private EditText editTextfullName, editTextAge, editTextEmail, editTextPassword;
@@ -33,10 +34,6 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
-
-
-
-        mAuth =FirebaseAuth.getInstance();
 
         banner = (TextView) findViewById(R.id.banner);
         banner.setOnClickListener(this);
@@ -68,7 +65,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextfullName.getText().toString().trim();
-        String age = editTextAge.getText().toString().trim();
+        String phone = editTextAge.getText().toString().trim();
 
         if(fullName.isEmpty()) {
             editTextfullName.setError("No full name");
@@ -76,8 +73,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if (age.isEmpty()){
-            editTextAge.setError("No age");
+        if (phone.isEmpty()){
+            editTextAge.setError("No phone");
             editTextAge.requestFocus();
             return;
         }
@@ -86,49 +83,50 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             editTextEmail.requestFocus();
             return;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        /*if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError("Please use valid email");
             editTextEmail.requestFocus();
             return;
-        }
+        }*/
         if(password.isEmpty()){
             editTextPassword.setError("No password");
             editTextPassword.requestFocus();
             return;
         }
-        if(password.length() < 6){
+        if(password.length() <2){
             editTextPassword.setError("No short password");
             editTextPassword.requestFocus();
             return;
         }
-
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
 
-                    if (task.isSuccessful()){
-                        User user = new User(fullName, age, email);
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                                .setValue(user).addOnCompleteListener(task1 -> {
+        signupSend ss = new signupSend();
+        ss.setUsername(fullName);
+        ss.setPassword(password);
+        ss.setEmail(email);
+        ss.setPhone(phone); //!!!!!!!
+        ss.setRole();
 
-                                    if(task1.isSuccessful()){
-                                        Toast.makeText(RegisterUser.this, "Зарегистрировался юзер",Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.VISIBLE);
-                                        startActivity(new Intent(this, LogInPage.class));
+        RetrofitServiceJson retrofitService = new RetrofitServiceJson();
+        ClientApi clientApi = retrofitService.getRetrofit().create(ClientApi.class);
 
-                                        //redirect to login layout
-                                    }
-                                    else{
-                                        Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-
-                                });
-                    }else {
-                        Toast.makeText(RegisterUser.this,"Ошибка регистрации",Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
+        clientApi.save(ss)
+                .enqueue(new Callback<Client>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Client> call, @NonNull Response<Client> response) {
+                        Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        startActivity(new Intent(RegisterUser.this, CentralPage.class).putExtra("mail",email));
+                    }
+                    @Override
+                    public void onFailure(@NonNull Call<Client> call, @NonNull Throwable t) {
+                        String resp = "Регистрация не прошла: ".concat(t.toString());
+                        Toast.makeText(RegisterUser.this,resp, Toast.LENGTH_LONG).show();
+                        Logger.getLogger(RegisterUser.class.getName()).log(Level.SEVERE,"Ошибка",t);
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 });
+
+
     }
 }

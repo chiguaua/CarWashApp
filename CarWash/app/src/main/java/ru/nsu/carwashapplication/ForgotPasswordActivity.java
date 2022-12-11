@@ -9,13 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText emailEditText;
     private Button resetPasswordButton;
-
-    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +22,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         emailEditText = (EditText) findViewById(R.id.email);
         resetPasswordButton = (Button) findViewById(R.id.resetPassword);
-
-        auth = FirebaseAuth.getInstance();
         
         resetPasswordButton.setOnClickListener(v -> resetPassword());
     }
@@ -44,7 +40,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return;
         }
 
-        auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
+        /*auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Toast.makeText(ForgotPasswordActivity.this, "Проверьте свою почту, сообщение может быть в спаме", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(ForgotPasswordActivity.this, LogInPage.class));
@@ -53,6 +49,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 Toast.makeText(ForgotPasswordActivity.this, "Такой почты не существует", Toast.LENGTH_LONG).show();
                 emailEditText.requestFocus();
             }
-        });
+        });*/
     }
 }
