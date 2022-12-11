@@ -122,7 +122,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                             Toast.makeText(RegisterUser.this,"Регистрация прошла", Toast.LENGTH_SHORT).show();
                             //Toast.makeText(LogInPage.this, ans.getAccessToken(), Toast.LENGTH_LONG).show();
                             globalVar.setUserMail(email);
-                            startActivity(new Intent(RegisterUser.this, CentralPage.class));
+                            startActivity(new Intent(RegisterUser.this, LogInPage.class));
                         } else  {
                             Toast.makeText(RegisterUser.this, "Регистрация не прошла", Toast.LENGTH_LONG * 10).show();
                         }
