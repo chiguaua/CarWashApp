@@ -108,7 +108,7 @@ public class LogInPage extends AppCompatActivity implements View.OnClickListener
                         progressBar.setVisibility(View.INVISIBLE);
                         if (response.code() == 200) {
                             loginCallback ans = (loginCallback) response.body();
-                            Toast.makeText(LogInPage.this, ans.getAccessToken(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LogInPage.this, ans.getAccessToken(), Toast.LENGTH_LONG).show();
                             globalVar.setUserMail(email);
                             startActivity(new Intent(LogInPage.this, CentralPage.class));
                         } else if (response.code() == 404) {
